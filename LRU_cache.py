@@ -41,7 +41,7 @@ class LRUCache:
     def validate(self) -> bool:
         self.__dump()
 
-        if self.__item_count is 0: return True
+        if self.__item_count == 0: return True
 
         item_set = set()
 
@@ -67,7 +67,7 @@ class LRUCache:
             assert value in item_set
 
         assert self.__item_count <= self.__capacity
-        assert self.__item_count is len(item_set) is len(self.__cache)
+        assert self.__item_count == len(item_set) == len(self.__cache)
 
         return True
 
@@ -89,7 +89,7 @@ class LRUCache:
 
     @validated
     def get(self, key: int) -> int:
-        if self.__capacity is 0: return -1
+        if self.__capacity == 0: return -1
 
         if key in self.__cache:
             item = self.__cache[key]
@@ -100,7 +100,7 @@ class LRUCache:
 
     @validated
     def put(self, key: int, value: int) -> None:
-        if self.__capacity is 0: return
+        if self.__capacity == 0: return
 
         if key in self.__cache:
             # Handle existing key
@@ -112,7 +112,7 @@ class LRUCache:
             item = LRUCache.__CacheItem(key, value)
             self.__cache[key] = item
 
-            if self.__item_count is 0:
+            if self.__item_count == 0:
                 self.__oldest_item = item
                 self.__newest_item = item
                 self.__item_count += 1
